@@ -1,51 +1,34 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 
 
 
+export default function Weatherform(props) {
+
+    const [cityname, setCity] = useState(null)
 
 
-
-export default class Weatherform extends Component {
-
-
-
-
-
-    
-    constructor(props) {
-        super(props)
-        this.state = {
-            cityname: ""
-        };
+    function citybox(e) {
+        setCity(e.target.value)
     }
 
-    citybox = (e) => {
-        this.setState({
-            cityname: e.target.value
-        });
-    }
-
-    updateStore = () => {
-        if (this.state.cityname !== "" && this.state.cityname !== this.props.savedcity) {
-            this.props.getcity(this.state.cityname)
-            let url='http://api.openweathermap.org/data/2.5/weather?q='+this.state.cityname+'&appid=9328b94e7be4310a47cd459b2664068f&units=metric';
-            this.props.getweather(url)
+    function updateStore() {
+        if (cityname !== "" && cityname !== props.savedcity) {
+            props.getcity(cityname)
+            let url = `http://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=9328b94e7be4310a47cd459b2664068f&units=metric`;
+            props.getweather(url)
         }
     }
 
-
-    render() {
-        // console.log("store "+this.props.savedcity);
-        return (
-            <div className="inputform">
-                <div className="heading">Weather Report</div>
-                <div className="textbox">
-                    <input type="text" onBlur={this.citybox} placeholder="Enter city name" id="inputcity" />
-                </div>
-                <div>
-                    <input className="btn" onClick={this.updateStore} type="button" value="Submit" id="submitbutton" />
-                </div>
+    return (
+        <div className="inputform">
+            <div className="heading">Weather Report</div>
+            <div className="textbox">
+                <input type="text" onBlur={citybox} placeholder="Enter city name" id="inputcity" />
             </div>
-        );
-    }
+            <div>
+                <input className="btn" onClick={updateStore} type="button" value="Submit" id="submitbutton" />
+            </div>
+        </div>
+    );
+
 }
