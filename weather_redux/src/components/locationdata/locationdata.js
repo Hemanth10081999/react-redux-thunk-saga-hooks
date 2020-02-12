@@ -28,8 +28,8 @@ export default function Locationdata(props) {
 
     useloc();
     if (props.data === null && latitude != null && longitude != null) {
-        props.getweather(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=9328b94e7be4310a47cd459b2664068f&units=metric`);
-        console.log(`http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=9328b94e7be4310a47cd459b2664068f&units=metric`)
+        props.getweather(`http://localhost:8080/api/weather/location/${latitude}/${longitude}`);
+        // console.log(`http://localhost:8080/api/weather/location/${latitude}/${longitude}`)
         return null;
     }
     return null;

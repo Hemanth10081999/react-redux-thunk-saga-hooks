@@ -11,13 +11,13 @@ async function weathercall(url) {
             if(error.response.status===404){
                 alert("enter correct city name")
                 responsedata=error.response.status
-                
             }
         });
 
     if(responsedata===404){
         return null;
     }
+    console.log(responsedata);
     return responsedata;
 }
 

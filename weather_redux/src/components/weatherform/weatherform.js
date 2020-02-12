@@ -14,7 +14,7 @@ export default function Weatherform(props) {
     function updateStore() {
         if (cityname !== "" && cityname !== props.savedcity) {
             props.getcity(cityname)
-            let url = `http://api.openweathermap.org/data/2.5/weather?q=${cityname}&appid=9328b94e7be4310a47cd459b2664068f&units=metric`;
+            let url = `http://localhost:8080/api/weather/city/${cityname}`;
             props.getweather(url)
         }
     }
